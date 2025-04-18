@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ## 定制方法
-# 只需要在头部（此处）定义全局变量即可，具体详见官网文档，简单写几个例子
 # SOURCE="www.example.com"  # 指定软件源地址
 # BRANCH="branch"           # 指定软件源仓库
 # WEB_PROTOCOL="https"      # 指定 WEB 协议
