@@ -3,7 +3,7 @@
 ## 定制方法
 # SOURCE="www.example.com"  # 指定软件源地址
 # BRANCH="branch"           # 指定软件源仓库
-# WEB_PROTOCOL="https"      # 指定 WEB 协议
+ WEB_PROTOCOL="https"      # 指定 WEB 协议
 
 ## 软件源列表
 # 国内格式："软件源名称@软件源地址"
@@ -22,6 +22,7 @@ mirror_list_default=(
     "重庆邮电大学@mirrors.cqupt.edu.cn"
     "中国科学技术大学@mirrors.ustc.edu.cn"
     "中国科学院软件研究所@mirror.iscas.ac.cn"
+    "苏州神州博海有限公司@icms.51haitun.cn/ali"
 )
 # 中国大陆教育网格式："软件源名称@软件源地址"
 mirror_list_edu=(
@@ -136,6 +137,7 @@ mirror_list_extranet=(
     "mirrors.tencent.com"
     "mirrors.huaweicloud.com"
     "mirrors.volces.com"
+    "icms.51haitun.cn/ali"
 )
 # 软件源内网地址列表
 mirror_list_intranet=(
@@ -289,7 +291,7 @@ function handle_command_options() {
   --print-diff             打印源文件修改前后差异                                            无
   --pure-mode              纯净模式，精简打印内容                                            无
 
-问题报告 https://github.com/SuperManito/LinuxMirrors/issues\n"
+\n"
     }
 
     ## 判断参数
@@ -476,7 +478,7 @@ function handle_command_options() {
         --protocol | --web-protocol)
             if [ "$2" ]; then
                 case "$2" in
-                http | https | HTTP | HTTPS)
+                 http| https | HTTP| HTTPS)
                     WEB_PROTOCOL="${2,,}"
                     shift
                     ;;
@@ -627,7 +629,7 @@ function run_end() {
     fi
     local sponsor_ad=(
         "🔥 GCS · 全球海关合规3.0 ➜  https://gcs.51haitun.com \033[3;2m【广告】\033[0m"
-	"������ ICMS · 智慧关务2.0 ➜  https://icms.51haitun.cn \033[3;2m【广告】\033[0m"
+	"🔥 ICMS · 智慧关务2.0 ➜  https://icms.51haitun.cn \033[3;2m【广告】\033[0m"
     )
     echo -e "✨  脚本运行完毕 👉 \033[3mhttps://redogo.icu\033[0m\n"
     for ad in "${sponsor_ad[@]}"; do
@@ -801,11 +803,11 @@ function collect_system_info() {
         # 理论全部支持或不作判断
         ;;
     *)
-        output_error "当前操作系统不在本脚本的支持范围内（系统版本未知），请前往官网查看支持列表！"
+        output_error "当前操作系统不在本脚本的支持范围内（系统版本未知），请前往https://github.com/pangxiaosheng123/LinuxChangeMirrors.git查看支持列表！"
         ;;
     esac
     if [[ "${is_supported}" == "false" ]]; then
-        output_error "当前系统版本不在本脚本的支持范围内，请前往官网查看支持列表！"
+        output_error "当前系统版本不在本脚本的支持范围内，请前往https://github.com/pangxiaosheng123/LinuxChangeMirrors.git查看支持列表！"
     fi
     ## 判定系统处理器架构
     DEVICE_ARCH_RAW="$(uname -m)"
@@ -3993,7 +3995,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [resilientstorage-debug]
 name=Rocky Linux $releasever - Resilient Storage - Debug
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=ResilientStorage-$releasever-debug$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4002,7 +4004,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [resilientstorage-source]
 name=Rocky Linux $releasever - Resilient Storage - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=ResilientStorage-$releasever-source$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4011,7 +4013,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [nfv]
 name=Rocky Linux $releasever - NFV
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=NFV-$releasever$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/NFV/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/NFV/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4021,7 +4023,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [nfv-debug]
 name=Rocky Linux $releasever - NFV Debug
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever-debug$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/NFV/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/NFV/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4030,7 +4032,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [nfv-source]
 name=Rocky Linux $releasever - NFV Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever-source$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/NFV/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/NFV/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4039,7 +4041,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [rt]
 name=Rocky Linux $releasever - Realtime
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/RT/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/RT/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4049,7 +4051,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [rt-debug]
 name=Rocky Linux $releasever - Realtime Debug
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever-debug$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/RT/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/RT/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4058,7 +4060,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [rt-source]
 name=Rocky Linux $releasever - Realtime Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever-source$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/RT/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/RT/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4067,7 +4069,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [sap]
 name=Rocky Linux $releasever - SAP
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAP-$releasever$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/SAP/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/SAP/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4077,7 +4079,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [sap-debug]
 name=Rocky Linux $releasever - SAP Debug
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAP-$releasever-debug$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/SAP/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/SAP/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4086,7 +4088,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [sap-source]
 name=Rocky Linux $releasever - SAP Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAP-$releasever-source$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/SAP/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/SAP/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4095,7 +4097,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [saphana]
 name=Rocky Linux $releasever - SAPHANA
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAPHANA-$releasever$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/SAPHANA/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/SAPHANA/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4105,7 +4107,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [saphana-debug]
 name=Rocky Linux $releasever - SAPHANA Debug
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAPHANA-$releasever-debug$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/SAPHANA/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/SAPHANA/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4114,7 +4116,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [saphana-source]
 name=Rocky Linux $releasever - SAPHANA Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAPHANA-$releasever-source$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/SAPHANA/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/SAPHANA/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4124,7 +4126,7 @@ EOF
 [devel]
 name=Rocky Linux $releasever - Devel WARNING! FOR BUILDROOT ONLY DO NOT LEAVE ENABLED
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=devel-$releasever$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/devel/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/devel/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4134,7 +4136,7 @@ EOF
 [extras]
 name=Rocky Linux $releasever - Extras
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/os/
 gpgcheck=1
 enabled=1
 countme=1
@@ -4144,7 +4146,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [extras-debug]
 name=Rocky Linux $releasever - Extras Debug
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever-debug$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4153,7 +4155,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [extras-source]
 name=Rocky Linux $releasever - Extras Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever-source$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/extras/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/extras/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4162,7 +4164,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [plus]
 name=Rocky Linux $releasever - Plus
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=plus-$releasever$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/plus/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/plus/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4172,7 +4174,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [plus-debug]
 name=Rocky Linux $releasever - Plus - Debug
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=plus-$releasever-debug$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/plus/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/plus/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4181,7 +4183,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 [plus-source]
 name=Rocky Linux $releasever - Plus - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=plus-$releasever-source$rltype
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/plus/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/plus/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
@@ -4193,7 +4195,7 @@ EOF
 [appstream]
 name=Rocky Linux $releasever - AppStream
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=AppStream-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/AppStream/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/AppStream/$basearch/os/
 gpgcheck=1
 enabled=1
 countme=1
@@ -4203,7 +4205,7 @@ EOF
 [baseos]
 name=Rocky Linux $releasever - BaseOS
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/os/
 gpgcheck=1
 enabled=1
 countme=1
@@ -4213,7 +4215,7 @@ EOF
 [baseos-debug]
 name=Rocky Linux $releasever - BaseOS - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever-debug
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4221,7 +4223,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 [appstream-debug]
 name=Rocky Linux $releasever - AppStream - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=AppStream-$releasever-debug
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/AppStream/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/AppStream/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4229,7 +4231,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 [ha-debug]
 name=Rocky Linux $releasever - High Availability - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=HighAvailability-$releasever-debug
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/HighAvailability/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/HighAvailability/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4237,7 +4239,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 [powertools-debug]
 name=Rocky Linux $releasever - PowerTools - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=PowerTools-$releasever-debug
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/PowerTools/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/PowerTools/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4245,7 +4247,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 [resilient-storage-debug]
 name=Rocky Linux $releasever - Resilient Storage - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=ResilientStorage-$releasever-debug
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/$basearch/debug/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4254,7 +4256,7 @@ EOF
 [devel]
 name=Rocky Linux $releasever - Devel WARNING! FOR BUILDROOT AND KOJI USE
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=Devel-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/Devel/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/Devel/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4264,7 +4266,7 @@ EOF
 [extras]
 name=Rocky Linux $releasever - Extras
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/os/
 gpgcheck=1
 enabled=1
 countme=1
@@ -4274,7 +4276,7 @@ EOF
 [ha]
 name=Rocky Linux $releasever - HighAvailability
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=HighAvailability-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/HighAvailability/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/HighAvailability/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4303,7 +4305,7 @@ EOF
 [nfv]
 name=Rocky Linux $releasever - NFV
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=NFV-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/nfv/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/nfv/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4313,7 +4315,7 @@ EOF
 [plus]
 name=Rocky Linux $releasever - Plus
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=rockyplus-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/plus/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/plus/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4323,7 +4325,7 @@ EOF
 [powertools]
 name=Rocky Linux $releasever - PowerTools
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=PowerTools-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/PowerTools/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/PowerTools/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4333,7 +4335,7 @@ EOF
 [resilient-storage]
 name=Rocky Linux $releasever - ResilientStorage
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=ResilientStorage-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4343,7 +4345,7 @@ EOF
 [rt]
 name=Rocky Linux $releasever - Realtime
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/RT/$basearch/os/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/RT/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -4353,7 +4355,7 @@ EOF
 [baseos-source]
 name=Rocky Linux $releasever - BaseOS - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=BaseOS-$releasever-source
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/BaseOS/source/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4361,7 +4363,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 [appstream-source]
 name=Rocky Linux $releasever - AppStream - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=AppStream-$releasever-source
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/AppStream/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/AppStream/source/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4369,7 +4371,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 #[extras-source]
 #name=Rocky Linux $releasever - Extras - Source
 #mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=extras-$releasever-source
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/extras/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/extras/source/tree/
 #gpgcheck=1
 #enabled=0
 #gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4377,7 +4379,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 #[plus-source]
 #name=Rocky Linux $releasever - Plus - Source
 #mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=plus-$releasever-source
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/Plus/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/Plus/source/tree/
 #gpgcheck=1
 #enabled=0
 #gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4385,7 +4387,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 [ha-source]
 name=Rocky Linux $releasever - High Availability - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=HighAvailability-$releasever-source
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/HighAvailability/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/HighAvailability/source/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4393,7 +4395,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 [powertools-source]
 name=Rocky Linux $releasever - PowerTools - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=PowerTools-$releasever-source
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/PowerTools/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/PowerTools/source/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4401,7 +4403,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
 [resilient-storage-source]
 name=Rocky Linux $releasever - Resilient Storage - Source
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=ResilientStorage-$releasever-source
-#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/source/tree/
+#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/ResilientStorage/source/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
@@ -4625,7 +4627,7 @@ mirrorlist=https://mirrors.almalinux.org/mirrorlist/$releasever/plus-debug
 enabled=0
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
-metadata_expire=86400
+metadata_expire=86401
 enabled_metadata=0
 
 [plus-source]
@@ -4678,7 +4680,7 @@ mirrorlist=https://mirrors.almalinux.org/mirrorlist/$releasever/rt
 enabled=0
 gpgcheck=1
 countme=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-8
 metadata_expire=86400
 enabled_metadata=0
 
