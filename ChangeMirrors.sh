@@ -1,4 +1,7 @@
 #!/bin/bash
+## Author: redo
+## Modified: 2025-04-20
+## GitHub: https://github.com/pangxiaosheng123/LinuxChangeMirrors
 
 ## 定制方法
 # SOURCE="www.example.com"  # 指定软件源地址
@@ -666,7 +669,7 @@ function collect_system_info() {
     if [ -s "${File_DebianVersion}" ]; then
         SYSTEM_FACTIONS="${SYSTEM_DEBIAN}"
     elif [ -s "${File_OracleLinuxRelease}" ]; then
-        output_error "当前操作系统（Oracle Linux）不在本脚本的支持范围内，请前往官网查看支持列表！"
+        output_error "当前操作系统（Oracle Linux）不在本脚本的支持范围内，请前往https://github.com/pangxiaosheng123/LinuxChangeMirrors查看支持列表！"
     elif [ -s "${File_RedHatRelease}" ]; then
         SYSTEM_FACTIONS="${SYSTEM_REDHAT}"
     elif [ -s "${File_openEulerRelease}" ]; then
@@ -688,7 +691,7 @@ function collect_system_info() {
     elif [[ "${SYSTEM_NAME}" == *"NixOS"* ]]; then
         SYSTEM_FACTIONS="${SYSTEM_NIXOS}"
     else
-        output_error "当前操作系统不在本脚本的支持范围内，请前往官网查看支持列表！"
+        output_error "当前操作系统不在本脚本的支持范围内，请前往https://github.com/pangxiaosheng123/LinuxChangeMirrors查看支持列表！"
     fi
     ## 判定系统类型、版本、版本号
     case "${SYSTEM_FACTIONS}" in
