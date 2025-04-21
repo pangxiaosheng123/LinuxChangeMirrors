@@ -25,7 +25,7 @@ mirror_list_default=(
     "重庆邮电大学@mirrors.cqupt.edu.cn"
     "中国科学技术大学@mirrors.ustc.edu.cn"
     "中国科学院软件研究所@mirror.iscas.ac.cn"
-    "苏州神州博海有限公司@icms.51haitun.cn/ali"
+    "苏州神州博海有限公司@icms.51haitun.cn/tencent"
 )
 # 中国大陆教育网格式："软件源名称@软件源地址"
 mirror_list_edu=(
