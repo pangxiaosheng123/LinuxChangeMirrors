@@ -4138,8 +4138,8 @@ EOF
         cat <<'EOF' >$Dir_YumRepos/rocky-extras.repo
 [extras]
 name=Rocky Linux $releasever - Extras
-mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever$rltype
-#baseurl=https://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/os/
+mirrorlist=http://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever$rltype
+#baseurl=http://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/os/
 gpgcheck=1
 enabled=1
 countme=1
